@@ -1,13 +1,18 @@
 # Overview
 
-ChaCC API is a modular FastAPI application platform. The backbone owns the HTTP
-server, configuration validation, database engine, migration runner, module
-registry, dependency resolution, Redis service, rate limiting, and CLI tooling.
+## The problem ChaCC solves
 
-Modules own their domain logic and mount their own FastAPI routers into the
-backbone.
+Tired of setting up the same API boilerplate? ChaCC is a running server out of the box. Build an API module once, share it like a meme (but actually useful), and deploy it anywhere a ChaCC instance runs. Stop rebuilding. Start shipping.
 
-## Current release
+
+
+## What ChaCC is
+
+ChaCC API is a modular FastAPI application platform where Mmodules own their domain logic and mount their own FastAPI routers into the backbone.
+
+The backbone owns the HTTP server, configuration validation, database engine, and database migrations, module registry, dependency resolution, rate limiting, and CLI tooling.
+
+## Current pre-release
 
 | Item | Value |
 | --- | --- |

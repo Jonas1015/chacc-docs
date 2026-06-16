@@ -48,10 +48,11 @@ Required environment variable:
 CHACC_DEPLOY_URL=http://localhost:8085
 ```
 
-Optional environment variables:
+Optional environment variables (Still under development):
 
 ```bash
 CHACC_DEPLOY_API_KEY=optional-token
+
 CHACC_DEPLOY_TIMEOUT=30
 ```
 
@@ -90,10 +91,14 @@ This command is retained for compatibility. Prefer `chacc run server`.
 
 ```bash
 chacc create billing
+
 cd plugins/billing
+
 # edit module_meta.json, models.py, routes.py, and tests
 chacc run server --dev
+
 chacc build plugins/billing
+
 chacc deploy billing.chacc
 ```
 

@@ -75,6 +75,7 @@ Enable backups with:
 
 ```bash
 MIGRATION_BACKUP=true
+
 MIGRATION_BACKUP_DIR=backups
 ```
 

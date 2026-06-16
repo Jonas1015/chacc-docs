@@ -51,26 +51,35 @@
     
     ```bash
     pip install chacc-api
+    
     chacc create billing
+    
     chacc run server --dev
+    
     chacc build plugins/billing
+    
     chacc deploy billing.chacc
     ```
   </div>
 </div>
----
-## Documentation map
 
-> Always use the right hand side of the menu to read through the page's sections and left to move across pages
+## Documentation structure
 
-| Section | Area | What it covers |
-| --- | --- | --- |
-| Introduction | [Overview](overview.md) | Platform concepts, runtime flow, and architecture. |
-| Understanding & Usage | [Installation](installation.md) | Python, source, Docker, and local development setup. |
-| | [CLI](cli.md) | `chacc` commands for scaffolding, building, deploying, and running. |
-| | [Configuration](configuration.md) | Environment variables, production validation, and module config. |
-| | [Core API](core-api.md) | Built-in health, root, and module management endpoints. |
-| | [Database and Migrations](database-migrations.md) | SQLAlchemy models, migration modes, backups, and tracker table. |
-| Development | [Modules](modules.md) | Module metadata, entry points, routers, dependencies, and packaging. |
-|  | [Available Modules](official-modules/index.md) | Summary of official modules under ChaCC Core Team maintenance and their usage documentation|
-| Post Development | [Deployment](deployment.md) | Docker, Docker Compose, standalone Linux deployment, and health checks. |
+### Getting started
+
+- [Overview](overview.md) - What ChaCC solves and how it works
+- [Installation](installation.md) - Quick setup guide
+
+### Guides
+
+- [Configuration](configuration.md) - Environment setup
+- [CLI](cli.md) - Command reference
+- [Core API](core-api.md) - Built-in endpoints
+- [Database & Migrations](database-migrations.md) - Data layer
+- [Modules](modules.md) - Building plugins
+- [Deployment](deployment.md) - Production deployment
+
+### Reference
+
+- [Available Modules](official-modules/index.md) - Official plugins
+- [Changelog](changelog.md) - Release notes

@@ -7,22 +7,22 @@ docs_dir: docs
 
 nav:
   - Home: index.md
-  - INTRODUCTION:
+  - GETTING STARTED:
     - Overview: overview.md
-  - UNDERSTANDING:
+  - GUIDES:
     - Installation: installation.md
     - Configuration: configuration.md
     - Core API: core-api.md
     - Database and Migrations: database-migrations.md
     - CLI: cli.md
+    - Deployment: deployment.md
   - DEVELOPMENT:
       Modules:
        - modules.md
       Available Modules:
       - Summary: official-modules/index.md
       - Chacc Authentication: official-modules/authentication.md
-  - POST DEVELOPMENT:
-    - Deployment: deployment.md
+  - USEFUL INFORMATION:
     - Troubleshooting: troubleshooting.md
     - Changelog: changelog.md
 

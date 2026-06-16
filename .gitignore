@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.swp
+*.swo
+*~
+
+# Build artifacts
+site/

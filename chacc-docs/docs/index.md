@@ -65,21 +65,25 @@
 
 ## Documentation structure
 
-### Getting started
+### Getting Started
 
-- [Overview](overview.md) - What ChaCC solves and how it works
-- [Installation](installation.md) - Quick setup guide
+- [Overview](overview.md) - Platform concepts and architecture
 
 ### Guides
 
+- [Installation](installation.md) - Quick setup guide
 - [Configuration](configuration.md) - Environment setup
-- [CLI](cli.md) - Command reference
 - [Core API](core-api.md) - Built-in endpoints
-- [Database & Migrations](database-migrations.md) - Data layer
-- [Modules](modules.md) - Building plugins
+- [Database and Migrations](database-migrations.md) - Data layer
+- [CLI](cli.md) - Command reference
 - [Deployment](deployment.md) - Production deployment
 
-### Reference
+### Development
 
+- [Modules](modules.md) - Building plugins
 - [Available Modules](official-modules/index.md) - Official plugins
+
+### Useful Information
+
+- [Troubleshooting](troubleshooting.md) - Common issues
 - [Changelog](changelog.md) - Release notes

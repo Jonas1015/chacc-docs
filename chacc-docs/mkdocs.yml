@@ -1,5 +1,5 @@
 site_name: ChaCC API
-site_url: https://chacc.readthedocs.io/
+site_url: https://chacc.dev/
 site_description: Documentation for ChaCC API, a modular FastAPI application platform.
 site_author: ChaCC API
 repo_url: https://github.com/jonas1015/chacc-api

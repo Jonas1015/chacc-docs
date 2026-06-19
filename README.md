@@ -1,5 +1,9 @@
-![ChaCC Logo](chacc-docs/docs/assets/img/chacc-icon.ico)
+<p style="font-size:3.2em" align="center">  Official ChaCC API Documentation </p>
 
-# ChaCC API Official Documentation
+<a href="https://chacc.dev" target="blank"><p align="center">
+  <img src="chacc-docs/docs/assets/img/chacc-icon.ico" alt="ChaCC API" />
+</p></a>
 
-Kindly visit [https://chacc.dev](https://chacc.dev)
+<p align="center" style="font-size:20px"> ChaCC API Official Documentation Repository </p>
+
+<p align="center"> Kindly visit our <a href="https://chacc.dev" target="blank"> documentation </p>

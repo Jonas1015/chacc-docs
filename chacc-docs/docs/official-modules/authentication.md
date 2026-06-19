@@ -69,7 +69,6 @@ flowchart TB
         BC[Backbone Context]
         MOD[Module Loader]
     end
-
     subgraph Authentication Module
         SETUP[setup_plugin]
         INIT[Initialize RBAC Defaults]
@@ -77,12 +76,10 @@ flowchart TB
         AUTH_ROUTES[auth_router]
         RBAC_ROUTES[rbac_router]
     end
-
     subgraph Data Stores
         DB[(SQLAlchemy DB)]
         REDIS[(Redis)]
     end
-
     MOD -->|loads| SETUP
     SETUP -->|calls| INIT
     SETUP -->|calls| ADMIN
@@ -129,7 +126,6 @@ sequenceDiagram
     participant Login as POST /login
     participant Store as DB + Redis
     participant JWT as JWT Service
-
     Client->>Login: username + password
     Login->>Store: verify argon2 password hash
     alt Invalid credentials
@@ -141,10 +137,8 @@ sequenceDiagram
         JWT-->>Login: tokens
         Login-->>Client: 200 + access_token + refresh_token
     end
-
     actor ClientUsing
     participant Protected as GET /me
-
     ClientUsing->>Protected: Authorization: Bearer <token>
     Protected->>JWT: decode + verify HS256
     alt Expired or invalid
@@ -165,7 +159,6 @@ sequenceDiagram
     participant Refresh as POST /refresh
     participant Redis
     participant DB
-
     Client->>Refresh: refresh_token
     Refresh->>Redis: lookup session
     alt Missing or expired
@@ -189,7 +182,6 @@ erDiagram
     ROLE ||--o{ ROLE_PRIVILEGE : has
     ROLE_GROUP ||--o{ ROLE_GROUP_ROLE : contains
     ROLE_GROUP ||--o{ ROLE : group_of
-
     USER {
         int id PK
         string username UK
@@ -197,42 +189,35 @@ erDiagram
         string password_hash
         bool is_active
     }
-
     ROLE {
         int id PK
         string name UK
         string description
         bool is_system
     }
-
     PRIVILEGE {
         int id PK
         string name UK
         string description
         string severity
     }
-
     ROLE_GROUP {
         int id PK
         string name UK
         string description
     }
-
     USER_ROLE {
         int user_id FK
         int role_id FK
     }
-
     USER_PRIVILEGE {
         int user_id FK
         int privilege_id FK
     }
-
     ROLE_PRIVILEGE {
         int role_id FK
         int privilege_id FK
     }
-
     ROLE_GROUP_ROLE {
         int role_group_id FK
         int role_id FK
@@ -539,9 +524,7 @@ Other modules and ChaCC API extensions can use the registered services.
 
 ```python
 from fastapi import APIRouter, Depends
-
 router = APIRouter()
-
 @router.get("/protected")
 async def protected_route(current_user = Depends(context.get_service("get_current_user"))):
     return {"message": f"Hello {current_user.username}"}
@@ -553,7 +536,6 @@ Raise `401` if the user is not authenticated:
 
 ```python
 from fastapi import HTTPException, status
-
 @router.get("/strict")
 async def strict_route(current_user = Depends(context.get_service("get_current_user"))):
     if current_user is None:
@@ -565,7 +547,6 @@ async def strict_route(current_user = Depends(context.get_service("get_current_u
 
 ```python
 from module.dependencies import require_privilege
-
 @router.delete("/admin/reset")
 async def reset_system(user = Depends(require_privilege("MANAGE_SYSTEM"))):
     return {"status": "reset complete"}
@@ -575,7 +556,6 @@ async def reset_system(user = Depends(require_privilege("MANAGE_SYSTEM"))):
 
 ```python
 from module.dependencies import require_any_privilege
-
 @router.get("/reports")
 async def get_reports(user = Depends(require_any_privilege(["READ_REPORTS", "MANAGE_SYSTEM"]))):
     return {"reports": [...]}
@@ -585,7 +565,6 @@ async def get_reports(user = Depends(require_any_privilege(["READ_REPORTS", "MAN
 
 ```python
 from module.dependencies import get_user_privileges
-
 @router.get("/my-permissions")
 async def my_permissions(privileges = Depends(get_user_privileges)):
     return {"privileges": privileges}
@@ -667,7 +646,6 @@ The module is available at `http://localhost:8001/authentication/`.
 ```bash
 # With virtual environment
 python module/run_tests.py test
-
 # Without virtual environment
 python module/run_tests.py test --no-venv
 ```

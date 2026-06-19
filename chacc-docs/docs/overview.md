@@ -8,7 +8,7 @@ Tired of setting up the same API boilerplate? ChaCC is a running server out of t
 
 ## What ChaCC is
 
-ChaCC API is a modular FastAPI application platform where Mmodules own their domain logic and mount their own FastAPI routers into the backbone.
+ChaCC API is a modular FastAPI application platform where modules own their domain logic and mount their own FastAPI routers into the backbone.
 
 The backbone owns the HTTP server, configuration validation, database engine, and database migrations, module registry, dependency resolution, rate limiting, and CLI tooling.
 
@@ -17,7 +17,7 @@ The backbone owns the HTTP server, configuration validation, database engine, an
 | Item | Value |
 | --- | --- |
 | Package | `chacc-api` |
-| Version | `1.0.0-b4` |
+| Version | `1.0.0-b4.1` |
 | Runtime | Python 3.10, 3.11, or 3.12 |
 | Web framework | FastAPI |
 | Database | SQLite by default, PostgreSQL supported |
@@ -27,7 +27,7 @@ The backbone owns the HTTP server, configuration validation, database engine, an
 
 ### Backbone
 
-The backbone is the FastAPI application which during startup it validates the environment, initializes the database, runs
+The backbone is the FastAPI application which validates the environment, initializes the database, runs
 migrations, and loads modules.
 
 ### Module
@@ -51,7 +51,7 @@ It exposes shared services:
 | `context.app` | Main FastAPI application. |
 | `context.limiter` | SlowAPI limiter for route-level throttling. |
 | `context.logger` | Centralized logger. |
-| `context.get_db` | Database session dependency. It is a synchronous session and should be treated as such|
+| `context.get_db` | Database session dependency. It is a synchronous session and should be treated as such. |
 | `context.register_service()` | Register a named service for other modules. |
 | `context.get_service()` | Retrieve a named service. |
 | `context.get_module_config()` | Read module-specific environment configuration. |
@@ -85,12 +85,10 @@ flowchart LR
         Loader[Module loader]
         Redis[(Redis optional)]
     end
-
     subgraph Modules[Installed modules]
         Auth[Authentication module]
         Feature[Feature module]
     end
-
     API --> Context
     Context --> DB
     Context --> Redis

@@ -48,15 +48,11 @@ A module entry point must expose a callable setup function.
 ```python
 from fastapi import APIRouter
 from chacc_api import BackboneContext
-
-
 def setup_plugin(context: BackboneContext):
     router = APIRouter(prefix="/items", tags=["Items"])
-
     @router.get("/")
     async def list_items():
         return {"items": []}
-
     return router
 ```
 
@@ -70,8 +66,6 @@ Models should inherit from `ChaCCBaseModel` and use `@register_model`.
 ```python
 from chacc_api import ChaCCBaseModel, register_model
 from sqlalchemy import Column, String
-
-
 @register_model
 class Item(ChaCCBaseModel):
     __tablename__ = "items"
@@ -83,7 +77,7 @@ class Item(ChaCCBaseModel):
 | Field | Type | Purpose |
 | --- | --- | --- |
 | `id` | `Integer` | Primary key. |
-| `uuid` | `GUID` | Cross-database UUID value. |
+| `uuid` | `GUID` | Cross-database UUID value, defaults to `uuid7`. |
 | `created_at` | `DateTime` | Creation timestamp. |
 | `updated_at` | `DateTime` | Last update timestamp. |
 | `deleted_at` | `DateTime` | Soft-delete timestamp. |
@@ -96,10 +90,7 @@ Use the database dependency from the module context or directly from ChaCC API.
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from chacc_api import get_db
-
 router = APIRouter()
-
-
 @router.get("/ping")
 async def ping(db: Session = Depends(get_db)):
     return {"ok": True}
@@ -112,8 +103,6 @@ Modules can share behavior through `BackboneContext`.
 ```python
 def verify_token(token: str):
     return token == "example"
-
-
 def setup_plugin(context):
     context.register_service("token_verifier", verify_token)
     return router

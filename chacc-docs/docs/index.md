@@ -51,13 +51,9 @@
     
     ```bash
     pip install chacc-api
-    
     chacc create billing
-    
     chacc run server --dev
-    
     chacc build plugins/billing
-    
     chacc deploy billing.chacc
     ```
   </div>

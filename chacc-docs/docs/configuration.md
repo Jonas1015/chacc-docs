@@ -20,7 +20,12 @@ The packaged `.env.sample` can be copied to `.env` and customized.
 | `DATABASE_HOST` | `localhost` | PostgreSQL host. |
 | `DATABASE_PORT` | `5432` | PostgreSQL port. |
 
-SQLite stores the database at `chaccapi.db` in the current working directory.
+SQLite stores the database at `chaccapi.db` in the current working directory by default.
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `SQLITE_DATABASE_NAME` | `chaccapi.db` | SQLite database file name. |
+| `SQLITE_DATABASE_PATH` | Current working directory | Directory used for SQLite database storage. |
 
 ## Module directories
 
@@ -97,6 +102,21 @@ Use uppercase names in `.env`:
 BILLING_API_KEY=sk_live_example
 BILLING_SECRET=replace-me
 ```
+
+## Logging
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `CHACC_VERBOSE` | `false` | Enables `INFO` logging when true. |
+| `CHACC_DEBUG` | `false` | Enables `DEBUG` logging when true. |
+
+Default log level behavior:
+
+- Neither `CHACC_VERBOSE` nor `CHACC_DEBUG` set: `WARNING`.
+- `CHACC_VERBOSE=true`: `INFO`.
+- `CHACC_DEBUG=true`: `DEBUG`.
+
+Alembic logs are suppressed to `WARNING`.
 
 ## Production validation
 

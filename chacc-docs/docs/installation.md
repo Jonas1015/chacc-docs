@@ -1,7 +1,6 @@
 # Installation
 
-ChaCC API can be installed from PyPI, from source, or through Docker. SQLite is
-the simplest local database. PostgreSQL is recommended for production.
+ChaCC API can be installed from PyPI, from source, or through Docker. SQLite database file name and path can be customized with `SQLITE_DATABASE_NAME` and `SQLITE_DATABASE_PATH`. By default the database file `chaccapi.db` is created in the current working directory.
 
 ## Prerequisites
 
@@ -16,7 +15,6 @@ Create project directory
 mkdir my-project && cd my-project
 ```
 Create virtual environment
-
 ```bash
 python -m venv .venv
 ```
@@ -26,13 +24,12 @@ Windows:
 ```bash
 .\.venv\Scripts\activate
 ```
-
 Linux/Mac:
 ```bash
 source .venv/bin/activate
 ```
 
-Start ChaCC Installation
+Start ChaCC Installation:
 
 ```bash
 pip install chacc-api
@@ -91,10 +88,8 @@ checks, and persistent volumes for PostgreSQL and module storage.
 ```bash
 # Scaffold your module
 chacc create my_module
-
 # Run development server to see it in action
 chacc run server --dev
-
 # Build your module and distribute as you wish
 chacc build plugins/my_module
 ```
@@ -103,11 +98,8 @@ Recommended development settings:
 
 ```bash
 CHACC_DEV_MODE=true
-
 ENABLE_PLUGIN_HOT_RELOAD=true
-
 PLUGIN_AUTO_DISCOVERY=true
-
 ENABLE_PLUGIN_DEPENDENCY_RESOLUTION=true
 ```
 
@@ -115,15 +107,10 @@ ENABLE_PLUGIN_DEPENDENCY_RESOLUTION=true
 
 ```bash
 CHACC_DEV_MODE=false
-
 ENABLE_PLUGIN_HOT_RELOAD=false
-
 PLUGIN_AUTO_DISCOVERY=false
-
 ENABLE_PLUGIN_DEPENDENCY_RESOLUTION=false
-
 DATABASE_ENGINE=postgresql
-
 SECRET_KEY=<random 32+ character secret>
 ```
 

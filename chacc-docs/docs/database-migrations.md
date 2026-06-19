@@ -8,8 +8,8 @@ migrations are not repeated.
 
 | Engine | Use case | Notes |
 | --- | --- | --- |
-| SQLite | Local development and simple deployments | Stores `chaccapi.db` in the current working directory. |
-| PostgreSQL | Production | Uses native UUID and requires full connection settings. |
+| SQLite | Local development and simple deployments | Stores `chaccapi.db` in the current working directory by default. The file name and path can be changed with `SQLITE_DATABASE_NAME` and `SQLITE_DATABASE_PATH`. |
+| PostgreSQL | Production | Uses native UUID and requires full connection settings. Supports enum migrations with `alembic-postgresql-enum`. |
 
 ## Base model
 
@@ -18,8 +18,6 @@ Import the base model and register each table model:
 ```python
 from chacc_api import ChaCCBaseModel, register_model
 from sqlalchemy import Column, String
-
-
 @register_model
 class Project(ChaCCBaseModel):
     __tablename__ = "projects"
@@ -34,6 +32,28 @@ The generated table name defaults to the class name in lowercase plus `s`, unles
 The `GUID` type decorator stores UUIDs as native PostgreSQL UUID values and as
 36-character strings on SQLite and other databases. It returns Python `uuid.UUID`
 instances from the database.
+
+`ChaCCBaseModel.uuid` now defaults to `uuid7` instead of `uuid4`. Existing rows
+are not affected; new rows receive version 7 UUIDs. On Python versions without
+native `uuid7` support, install `uuid-utils` to provide the implementation.
+
+## PostgreSQL enum migrations
+
+`alembic-postgresql-enum` is loaded when installed and adds support for enum
+operations in Alembic:
+
+- `create_enum` — creates enum types before adding enum-backed tables or columns.
+- `sync_enum_values` — synchronizes enum values with database metadata.
+- `drop_enum` — handles enum type removal.
+
+Enum types are created before adding enum-backed tables or columns in PostgreSQL,
+ensuring safe operation ordering.
+
+In `auto` mode, `create_enum` and `sync_enum_values` are treated as safe
+operations. `drop_enum` is recognized and applied during full migration flow.
+
+If enum metadata changes are detected, `alembic-postgresql-enum` must be
+installed to prevent enum-related migration failures.
 
 ## Timestamps
 
@@ -75,7 +95,6 @@ Enable backups with:
 
 ```bash
 MIGRATION_BACKUP=true
-
 MIGRATION_BACKUP_DIR=backups
 ```
 

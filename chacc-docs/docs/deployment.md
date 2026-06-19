@@ -8,9 +8,7 @@ standalone Linux service.
 Build and run a local image:
 
 ```bash
-docker build -f deployment/docker/Dockerfile -t chacc-api:latest .
-
-docker run -d -p 8080:8080 chacc-api:latest
+docker run -d -p 8085:8085 chacc-api:latest
 ```
 
 The Docker image installs `chacc-api` from PyPI and starts the server with:
@@ -21,7 +19,7 @@ chacc run server
 
 ## Docker Compose
 
-Use the production compose file [here](https://github.com/Jonas1015/chacc-api/tree/develop/deployment/standalone):
+Use the production compose file included in the repository:
 
 ```bash
 docker compose -f deployment/docker/docker-compose.yml up -d
@@ -29,19 +27,23 @@ docker compose -f deployment/docker/docker-compose.yml up -d
 
 The compose stack includes:
 
-- ChaCC API on port `8085`.
+- ChaCC API on port `8085` using `chacc-api:latest` from Docker Hub.
 - PostgreSQL 15.
 - Persistent PostgreSQL data volume.
 - Persistent module storage volumes.
 - Health checks for API and database readiness.
 
+Health check calls:
+
+```bash
+curl http://localhost:8085/health
+```
+
 Example environment:
 
 ```bash
 DB_PASSWORD=change-me
-
 SECRET_KEY=replace-with-a-strong-random-secret
-
 ADMIN_PASSWORD=replace-with-a-strong-admin-password
 ```
 
@@ -95,34 +97,21 @@ Recommended production settings:
 
 ```bash
 CHACC_DEV_MODE=false
-
 DATABASE_ENGINE=postgresql
-
 DATABASE_HOST=localhost
-
 DATABASE_PORT=5432
-
 DATABASE_USER=chacc
-
 DATABASE_NAME=chacc
-
 DATABASE_PASSWORD=<strong-password>
-
 SECRET_KEY=<random-32-plus-character-secret>
-
 ENABLE_PLUGIN_HOT_RELOAD=false
-
 PLUGIN_AUTO_DISCOVERY=false
-
 ENABLE_PLUGIN_DEPENDENCY_RESOLUTION=false
-
 MIGRATION_MODE=auto
-
 MIGRATION_BACKUP=true
-
 MIGRATION_BACKUP_DIR=backups
-
-LOG_LEVEL=INFO
+CHACC_VERBOSE=false
+CHACC_DEBUG=false
 ```
 
 ## Module persistence

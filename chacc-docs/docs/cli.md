@@ -52,7 +52,6 @@ Optional environment variables (Still under development):
 
 ```bash
 CHACC_DEPLOY_API_KEY=optional-token
-
 CHACC_DEPLOY_TIMEOUT=30
 ```
 
@@ -77,7 +76,8 @@ Options:
 | `--dev` | Run in development mode with auto-reload. |
 | `--host` | Host to bind. Defaults to `0.0.0.0`. |
 | `--port` | Port to bind. Defaults to `8085`. |
-| `--debug` | Enable debug logging. |
+| `-v` / `--verbose` | Enable verbose logging (`CHACC_VERBOSE=true`). The flag is passed to the server subprocess, so startup logs and application logs use `INFO` level. |
+| `--debug` | Enable debug logging (`CHACC_DEBUG=true` in development mode). |
 
 ## Legacy server command
 
@@ -91,14 +91,10 @@ This command is retained for compatibility. Prefer `chacc run server`.
 
 ```bash
 chacc create billing
-
 cd plugins/billing
-
 # edit module_meta.json, models.py, routes.py, and tests
 chacc run server --dev
-
 chacc build plugins/billing
-
 chacc deploy billing.chacc
 ```
 

@@ -1,6 +1,6 @@
 site_name: ChaCC API
 site_url: https://chacc.dev/
-site_description: Documentation for ChaCC API, a modular FastAPI application platform.
+site_description: Documentation for ChaCC API, a plug and play FastAPI modular platform.
 site_author: ChaCC API
 repo_url: https://github.com/jonas1015/chacc-api
 docs_dir: docs
@@ -22,6 +22,7 @@ nav:
       Available Modules:
       - Summary: official-modules/index.md
       - Chacc Authentication: official-modules/authentication.md
+      - Chacc File Manager: official-modules/file-manager.md
   - USEFUL INFORMATION:
     - Troubleshooting: troubleshooting.md
     - Changelog: changelog.md

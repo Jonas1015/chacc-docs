@@ -64,15 +64,3 @@
 - Removed redundant database type conversion in GUID TypeDecorator
 
 > **Caution:** Users migrating to 1.0.0-b4 will need to drop their existing databases and start afresh. The `rollback_available` column type changed from BOOLEAN to INTEGER, and GUID column changes require a clean schema migration that cannot be automatically applied to existing data.
-
-## 1.0.0-b3
-
-### Added
-
-- Automatic `.env` creation from `.env.sample` when `.env` is missing.
-- `.env.sample` included in package distribution.
-
-### Fixed
-
-- Improved migration engine database detection for default database and
-  PostgreSQL database configurations.
